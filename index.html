@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz aniversário 🌻</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#0a1030;--bg2:#1b2a6b;--gold:#f6c63a;--paper:#fdf6e3;--ink:#2b2f55;--blue:#3a5bd9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0;-webkit-text-size-adjust:100%}
+body{background:radial-gradient(ellipse at 50% 0%,var(--bg2),var(--bg1) 70%);color:#fff;font-family:Lora,Georgia,serif;overflow:hidden}
+#stars{position:fixed;inset:0;pointer-events:none}
+.star{position:absolute;background:#fff;border-radius:50%;animation:tw 3s infinite ease-in-out}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:1}}
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));transition:opacity .8s}
+.screen.hide{opacity:0;pointer-events:none}
+.notice{max-width:420px;background:rgba(255,255,255,.08);border:1px solid rgba(246,198,58,.5);border-radius:20px;padding:28px 24px;text-align:center;backdrop-filter:blur(6px)}
+.notice h2{font-family:'Dancing Script',cursive;color:var(--gold);font-size:2rem;margin:.3rem 0 1rem}
+.notice p{line-height:1.6;margin:0 0 1.2rem}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:12px 26px;background:var(--gold);color:#2b2300;font-weight:700}
+button:disabled{opacity:.3;cursor:default}
+#bookwrap{flex-direction:column;gap:14px;opacity:0;pointer-events:none}
+#bookwrap.show{opacity:1;pointer-events:auto}
+.book{position:relative;width:min(92vw,400px);height:min(74vh,600px);height:min(70dvh,600px);perspective:1600px}
+.page{position:absolute;inset:0;background:var(--paper);color:var(--ink);border-radius:6px 14px 14px 6px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 6px 0 14px rgba(0,0,0,.12);padding:26px 24px;display:flex;flex-direction:column;align-items:center;transform-origin:left center;transition:transform .9s cubic-bezier(.6,.1,.3,1),opacity .4s .5s;overflow:hidden;backface-visibility:hidden}
+.page.flipped{transform:rotateY(-120deg);opacity:0;pointer-events:none}
+.cover{background:linear-gradient(160deg,#1b2a6b,#0a1030);color:#fff;justify-content:center;text-align:center;border:2px solid var(--gold)}
+.cover h1{font-family:'Dancing Script',cursive;color:var(--gold);font-size:2.4rem;margin:.6rem 0}
+.cover small{opacity:.8}
+.pg-text{font-size:1rem;line-height:1.6;text-align:left;width:100%;flex:1;overflow:hidden;hyphens:auto}
+.pg-text p{margin:0 0 .7em}
+.pg-title{font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--blue);margin:0 0 .6rem}
+.photo{width:100%;flex:1;min-height:0;border-radius:10px;border:6px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);background:linear-gradient(135deg,#dbe4ff,#fff3c4);display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden;transform:rotate(-1.2deg)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.cap{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--blue);margin-top:12px;text-align:center}
+.num{position:absolute;bottom:8px;font-size:.75rem;opacity:.5}
+.nav{display:flex;gap:14px;align-items:center}
+.nav span{font-size:.85rem;opacity:.7;min-width:60px;text-align:center}
+.end{justify-content:center;text-align:center}
+.end .verse{font-style:italic;margin:1rem 0;line-height:1.6}
+
+.vs{font-family:'Dancing Script',cursive;color:var(--blue);font-size:1.45rem;text-align:center;margin:1.1em 0;border-top:1px solid #d8c98f;border-bottom:1px solid #d8c98f;padding:.5em 0}
+.vs::before{content:'✦ ';color:var(--gold)}
+.grid{display:grid;gap:10px;width:100%;flex:1;min-height:0}
+.n1{grid-template:1fr/1fr}.n2{grid-template:1fr 1fr/1fr}.n3{grid-template:1fr 1fr/1fr 1fr}.n3 .photo:first-child{grid-column:1/3}
+.grid .photo{height:100%;width:100%;font-size:3rem}
+.cap:empty{display:none}
+#fx{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.fall{position:absolute;top:-40px;animation:fall linear infinite;opacity:.8}
+@keyframes fall{to{transform:translateY(112vh) rotate(360deg)}}
+.shoot{position:absolute;width:120px;height:2px;background:linear-gradient(90deg,transparent,#fff);animation:sh 1.2s ease-out forwards}
+@keyframes sh{from{opacity:1;transform:translate(0,0) rotate(30deg)}to{opacity:0;transform:translate(300px,170px) rotate(30deg)}}
+.cat{position:fixed;bottom:calc(4px + env(safe-area-inset-bottom,0px));font-size:1.8rem;animation:walk 45s linear infinite;pointer-events:none;z-index:5}
+@keyframes walk{from{left:105vw}to{left:-60px}}
+#bookwrap.show .book{animation:bookIn 1.6s cubic-bezier(.2,.8,.2,1)}
+@keyframes bookIn{from{opacity:0;transform:scale(.7) rotateY(-30deg) translateY(40px)}to{opacity:1;transform:none}}
+#snd{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:10;padding:8px 12px;background:rgba(255,255,255,.15);color:#fff;display:none}
+#snd.show{display:block}
+</style>
+</head>
+<body>
+<div id="stars"></div><div id="fx"></div><div class="cat">🐈</div><button id="snd">🔊</button>
+
+<!-- AVISO INICIAL -->
+<section class="screen" id="intro">
+  <div class="notice">
+    <div id="sf0"></div>
+    <h2 id="avTitulo"></h2>
+    <p id="avTexto"></p>
+    <button id="abrir">Abrir o livro 📖</button>
+  </div>
+</section>
+
+<!-- LIVRO -->
+<section class="screen" id="bookwrap">
+  <div class="book" id="book"></div>
+  <div class="nav"><button id="prev">←</button><span id="cnt"></span><button id="next">→</button></div>
+</section>
+
+<script>
+/* ========= CONFIGURAÇÃO (é aqui que você edita nas próximas partes) ========= */
+const CFG = {
+  nome: "Mayza",
+  aviso: {
+    titulo: "Antes de abrir…",
+    texto: "Há muito tempo venho tentando me expressar pela escrita, organizar ideias, pensamentos, e espero poder transmitir tudo aqui. Não estranhe como eu organizei tudo, talvez fique um pouco confuso, mas na minha cabeça fez sentido."
+  },
+  // src: deixe "" enquanto não tiver a foto (vai aparecer um espaço reservado)
+  fotos: [
+    {src:"IMG_1", emoji:"🐈", legenda:""},
+    {src:"IMG_2", emoji:"🐈‍⬛", legenda:""},
+    {src:"IMG_3", emoji:"🐱", legenda:""},
+    {src:"IMG_4", emoji:"🌻", legenda:""},
+    {src:"IMG_5", emoji:"✨", legenda:""},
+    {src:"IMG_6", emoji:"🌌", legenda:""}
+  ],
+  // cada foto aparece logo depois da página onde esta frase começa
+  cartaFotos: [
+    {apos:"Você realmente fazia meus dias", fotos:[4], legenda:""},
+    {apos:"Hoje eu ainda gosto muito delas", fotos:[0,1,2], legenda:"As gatas 🐈"},
+    {apos:"Hoje, quando eu lembro do meu aniversário", fotos:[3], legenda:""},
+    {apos:"Mas hoje é isso que eu consigo dizer", fotos:[5], legenda:""}
+  ],
+  musica: "", // vazio = melodia suave gerada; ou coloque o arquivo de áudio
+  cartaTitulo: "Uma carta pra você",
+  carta: ["Mayza,", "Eu nem sei muito bem por onde começar isso aqui.", "Na verdade, acho que esse foi um dos motivos de eu ter demorado tanto pra te entregar. Eu comecei a escrever algumas coisas há um tempo, depois parei, voltei outro dia, lembrava de alguma coisa e colocava de novo. Pra ser mais exato, desde o dia que eu ganhei aquele livro de você, onde você dizia que sempre haveria cartas em seus presentes eu iniciei, espero cumprir esta função nestas linhas..", "E talvez seja até melhor assim.", "Porque tem muita coisa aqui que eu não queria simplesmente “esquecer”, e acho que escrever foi uma forma de guardar algumas delas do jeito que eu lembrava.", "Eu sei que hoje a gente não é mais tão próximo quanto já foi. As coisas mudaram, a rotina mudou, a gente mudou também. E eu não quero fingir que não mudou, porque mudou.", "Mas, mesmo com essa distância, tem algumas coisas que continuam sendo importantes pra mim.", "E eu acho que não me arrependo nem um pouco de poder expressá-las aqui", "Eu lembro de falar que você tinha melhorado um dia ruim meu. De agradecer pela companhia. De falar que gostava de compartilhar as coisas com você.", "E eu lembro de várias vezes em que eu te agradeci por isso.", "Na época talvez parecesse só uma mensagem qualquer, mas hoje eu percebo o quanto aquilo era verdade.", "Você realmente fazia meus dias ficarem melhores.", "E acho que uma das coisas que mais ficaram comigo foi justamente essa sensação de ter esta pessoa para compartilhar", "Saber que você caminhava para a mesma ideologia, mesmo princípios, ministérios.", "Isso me permitia…", "Eu gostava disso.", "Muito.", "E acho que foi aí que, sem eu perceber direito, você foi ficando importante.", "Tem algumas lembranças que são muito específicas e que provavelmente você nem imagina que eu ainda lembro.", "Harry Potter, por exemplo.", "Eu ainda lembro de você praticamente me CONVERTENDO", "Não estou acreditando que você me converteu a Harry Potter.", "E hoje estou na metade do 2º livro", "(não li o primeiro pois uma pessoa uma vez disse que iria me emprestar, mas até hoje nada)", "É engraçado porque são coisas pequenas, mas quando eu penso nelas hoje, elas acabam tendo um peso diferente.", "Porque não é só Harry Potter.", "É lembrar de você me apresentando uma coisa que você gostava", "São essas pequenas coisas que acabam ficando.", "As gatas também.", "Eu nunca fui exatamente uma pessoa mais fã de gato do mundo. Aí vem a Nina, onde eu descobri que tinha alergia, mas também descobri o quanto eu gosto desses bichos", "Nita, a Nitinha...", "A Nina principalmente, porque eu lembro de quando ela “chegou”", "Hoje eu ainda gosto muito delas.", "E é engraçado pensar que uma coisa que simplesmente fazia parte da SUA vida, acabou virando uma coisa que eu também passei a gostar por conta própria.", "Acho que isso aconteceu com várias coisas.", "E teve também uma parte muito maior do que essas coisas.", "A fé.", "As conversas sobre Deus, oração, igreja, sobre esperar o tempo do Senhor, sobre as coisas que a gente não entende na hora...", "Eu não consigo falar sobre ou de você sem citar isto!", "Porque você teve uma importância muito grande nessa parte da minha vida.", "Não porque você simplesmente me falou o que eu deveria acreditar, mas porque você me fez pensar sobre coisas que talvez eu não pensasse sozinho.", "Me fez conversar mais sobre Deus.", "Me fez olhar pra algumas situações de outra maneira.", "E até hoje eu consigo reconhecer isso.", "Eu acredito que algumas pessoas aparecem na nossa vida e acabam servindo de alguma forma pra gente crescer. Às vezes a gente percebe isso na hora, às vezes só percebe muito tempo depois.", "Com você, acho que eu percebi algumas coisas depois.", "Inclusive sobre mim mesmo.", "Eu aprendi a ser mais paciente em muitas situações.", "Aprendi que nem sempre eu estava certo!", "Aprendi que me afastar e simplesmente ficar quieto não resolve as coisas.", "E você tinha razão.", "Eu demorei pra entender isso, mas tinha.", "Eu poderia ter conversado. Poderia ter explicado. Poderia ter feito várias coisas diferentes.", "E reconhecer isso também fez parte de uma mudança minha.", "Acho que uma das coisas boas que ficaram de tudo isso foi justamente essa.", "Eu comecei a perceber alguns erros meus que antes talvez eu nem enxergasse.", "E isso é uma coisa que eu agradeço a você.", "Não porque tudo entre a gente foi “perfeito”, porque obviamente não foi.", "Houve momentos bons e teve momentos bem complicados.", "Teve coisa que a gente resolveu e teve coisa que simplesmente não resolvemos.", "Mas, mesmo assim, eu não consigo olhar pra tudo isso e pensar que não valeu a pena.", "Porque valeu.", "E muito.", "Eu também lembro do meu aniversário.", "Dia 1º de janeiro sempre foi uma data meio diferente pra mim.", "Eu gosto de aniversário. Sempre gostei.", "Mas durante muito tempo aniversário era uma coisa mais minha e da minha família. Não era aquela coisa de comemorar com amigos e tudo mais.", "E esse ano foi diferente", "Pode parecer uma coisa simples, mas pra mim não foi.", "Eu gostei de ter você comigo naquele dia.", "Gostei de passar aquele começo de ano com você.", "E talvez você nem saiba o quanto eu valorizei aquilo.", "Hoje, quando eu lembro do meu aniversário, você está naquela lembrança também.", "E acho que isso diz bastante.", "E acho que foi acontecendo isso com vários momentos.", "Eu comecei a associar músicas, lugares, conversas, coisas aleatórias a você.", "Às vezes alguma coisa acontece e eu penso “eu contaria isso pra ela”.", "E é engraçado, porque às vezes eu nem percebo na hora.", "Só percebo depois.", "“Caramba, eu realmente queria contar isso pra ela.”", "ou", "“Ela com certeza falaria sobre isso”", "E acho que essa é uma das coisas que mais me fazem perceber que você foi importante.", "Eu sei que hoje as coisas são diferentes.", "E eu sei que talvez seja estranho ler isso justamente agora.", "Talvez você pense que eu estou exagerando.", "Talvez você leia e fique sem saber o que falar.", "Talvez você ache engraçado eu ainda lembrar de coisas tão específicas.", "Mas eu queria que você soubesse.", "Porque, mesmo com a distância que existe hoje, eu ainda lembro.", "Eu ainda lembro das conversas.", "Ainda lembro das risadas.", "Ainda lembro das coisas que você me ensinou.", "Ainda lembro daquela sensação boa de saber que você estava ali.", "E, sendo bem sincero, não foi fácil simplesmente deixar tudo isso, assunto.", "Eu tentei.", "Mas acho que “deixar alguém ir, na nossa mente” não funciona desse jeito.", "Principalmente quando a pessoa fez parte de tanta coisa.", "Você não simplesmente apaga.", "Você vai vivendo, outras coisas acontecem, os dias passam, a rotina muda...", "Mas algumas lembranças continuam aparecendo de vez em quando.", "E comigo foi assim.", "Às vezes eu queria te contar alguma coisa.", "Às vezes eu queria que você estivesse em determinado momento.", "Eu só queria que você soubesse sua importância.", "Porque, por mais que as coisas tenham mudado, eu não consigo fingir que você foi só mais uma pessoa que passou pela minha vida.", "Você não foi.", "A pessoa com quem eu conversei sobre Deus e sobre coisas que eu talvez não teria coragem de conversar com qualquer pessoa.", "A pessoa que me mostrou alguns erros meus.", "Você conhece traumas, situações e coisas da minha vida que ninguém sabe.", "E acho que é isso que eu queria te agradecer.", "Não por uma coisa específica.", "Mas por tudo.", "Por todas as horas de conversa.", "Pelos conselhos.", "Pelas discussões também, porque até elas me ensinaram alguma coisa.", "Pelas vezes que você teve paciência comigo.", "Pelos momentos em que você simplesmente esteve ali.", "E principalmente por ter sido você.", "Eu não sei exatamente quando as coisas mudam.", "Talvez nem exista um momento específico.", "Às vezes as coisas só vão mudando.", "A rotina muda.", "E quando você percebe, aquilo que antes fazia parte do seu dia já não faz mais.", "Mas isso não significa que deixou de ter importância.", "Pelo menos não pra mim.", "E talvez seja por isso que eu demorei tanto pra te entregar isso.", "Porque eu queria escrever alguma coisa que fosse verdadeira.", "Não queria simplesmente escrever “obrigado por tudo” e pronto.", "Também não queria transformar isso em uma coisa exagerada, como se eu estivesse tentando fazer parecer que é e foi tudo perfeito.", "Não foi.", "Foi realista", "E eu gosto de lembrar disso.", "Porque algumas pessoas deixam marcas muito específicas na gente.", "E eu acho que vou perceber algumas delas ainda por bastante tempo.", "Talvez daqui a alguns anos eu leia isso de novo e ache engraçado o tanto de coisa que eu escrevi.", "Talvez eu lembre de outras coisas que nem coloquei aqui.", "Talvez tudo isso faça mais ou menos sentido daqui a algum tempo.", "Mas hoje é isso que eu consigo dizer.", "Eu queria que você soubesse que eu lembro.", "Que eu sou grato.", "(Filipenses 1:3)", "Que eu reconheço o quanto você foi importante pra mim.", "Depois de tanto tempo escrevendo um pouco aqui, um pouco ali, eu finalmente precisava te entregar.", "Não porque eu tenha todas as respostas.", "Na verdade, eu provavelmente ainda tenho várias perguntas.", "Só porque você foi importante demais pra mim pra eu simplesmente engolir tudo isso sozinho", "Você sabe o quanto Deus tem para agir em sua vida. Há muitas coisas te aguardando!!", "(Salmos 37:5)", "Vejo Cristo que habita aí dentro.", "Parabéns por mais um ano vencendo a cada dia", "Então fica aqui.", "Do jeito que eu consegui escrever.", "obrigado mocinha por tudo", "Porque, no fim, só Deus sabe o final.", "(Eclesiastes 3:1 )"],
+  assinatura: "Com carinho, Pheipe",
+  versiculo: "“O Senhor te abençoe e te guarde.”",
+  versiculoRef: "Números 6:24"
+};
+/* ============================================================================ */
+
+const $=s=>document.querySelector(s);
+// tenta várias extensões (jpg, jpeg, png...) e usa o emoji se a foto não existir
+window.nx=function(im,em){const E=['jpg','jpeg','png','JPG','JPEG','PNG','webp'];const i=+im.dataset.i+1;if(i<E.length){im.dataset.i=i;im.src=im.dataset.b+'.'+E[i]}else{im.replaceWith(document.createTextNode(em))}};
+
+// estrelas
+(function(){const c=$('#stars');for(let i=0;i<70;i++){const s=document.createElement('i');s.className='star';const z=Math.random()*2.5+1;s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${z}px;height:${z}px;animation-delay:${Math.random()*3}s`;c.appendChild(s)}})();
+
+// girassol em SVG
+function sunflower(sz){let p='';for(let i=0;i<16;i++)p+=`<ellipse cx="50" cy="20" rx="7" ry="17" fill="#f6c63a" stroke="#e0a800" stroke-width=".8" transform="rotate(${i*22.5} 50 50)"/>`;
+return `<svg width="${sz}" height="${sz}" viewBox="0 0 100 100">${p}<circle cx="50" cy="50" r="15" fill="#5a3a1a"/><circle cx="50" cy="50" r="9" fill="#3e2610"/></svg>`}
+$('#sf0').innerHTML=sunflower(64);
+$('#avTitulo').textContent=CFG.aviso.titulo;
+$('#avTexto').textContent=CFG.aviso.texto;
+
+// montagem do livro
+const book=$('#book');let pages=[];let cur=0;
+
+function mk(html,cls=''){const d=document.createElement('div');d.className='page '+cls;d.innerHTML=html;return d}
+
+function render(a){let h='',open=false;a.forEach((o,i)=>{if(o.nl||i===0){if(open)h+='</p>';h+=`<p${o.vs?' class="vs"':''}>`;open=true}h+=o.w+' '});return h+(open?'</p>':'')}
+function pag(lines,box){
+  const words=[];lines.forEach(l=>{const vs=/^\((Filipenses|Salmos|Eclesiastes)[^)]*\)\s*$/.test(l);l.split(/\s+/).forEach((w,i)=>words.push({w,nl:i===0,vs}))});
+  const out=[];let c=[];
+  words.forEach(o=>{c.push(o);box.innerHTML=render(c);if(box.scrollHeight>box.clientHeight+1&&c.length>1){c.pop();out.push(c);c=[o]}});
+  if(c.length)out.push(c);return out}
+function photoPage(f){return mk(`<div class="grid n${f.fotos.length}">${f.fotos.map(i=>{const x=CFG.fotos[i];return `<div class="photo">${x.src?`<img src="${x.src.includes('.')?x.src:x.src+'.jpg'}" data-b="${x.src}" data-i="0" decoding="async" alt="" onerror="nx(this,'${x.emoji}')">`:x.emoji}</div>`}).join('')}</div><div class="cap">${f.legenda||''}</div>`)}
+function build(){
+  book.innerHTML='';pages=[];
+  pages.push(mk(`${sunflower(90)}<h1>Feliz aniversário,<br>${CFG.nome}!</h1><small>🌌 um livrinho feito pra você 🌻</small>`,'cover'));
+  const probe=mk(`<h3 class="pg-title">x</h3><div class="pg-text"></div>`);probe.style.visibility='hidden';probe.style.transition='none';book.appendChild(probe);
+  const box=probe.querySelector('.pg-text');
+  const segs=[];let seg=[];
+  CFG.carta.forEach(l=>{seg.push(l);const m=CFG.cartaFotos.find(x=>l.startsWith(x.apos));if(m){segs.push({lines:seg,foto:m});seg=[]}});
+  if(seg.length)segs.push({lines:seg});
+  let first=true;
+  segs.forEach(s=>{pag(s.lines,box).forEach(c=>{pages.push(mk(`<h3 class="pg-title">${first?CFG.cartaTitulo:'🌻'}</h3><div class="pg-text">${render(c)}</div>`));first=false});if(s.foto)pages.push(photoPage(s.foto))});
+  book.removeChild(probe);
+  pages.push(mk(`${sunflower(70)}<h1 style="font-family:'Dancing Script',cursive;color:#3a5bd9;margin:.8rem 0 .2rem">Parabéns, ${CFG.nome}!</h1><p class="verse">${CFG.assinatura}</p><div style="font-size:2rem">🐈 ⭐ 🐈‍⬛</div>`,'end'));
+  pages.forEach((p,i)=>{p.style.zIndex=pages.length-i;if(i>0)p.insertAdjacentHTML('beforeend',`<span class="num">${i}</span>`);book.appendChild(p)});
+  cur=0;upd();
+}
+function upd(){pages.forEach((p,i)=>p.classList.toggle('flipped',i<cur));$('#cnt').textContent=`${cur+1} / ${pages.length}`;$('#prev').disabled=cur===0;$('#next').disabled=cur===pages.length-1}
+$('#next').onclick=()=>{if(cur<pages.length-1){cur++;upd()}};
+$('#prev').onclick=()=>{if(cur>0){cur--;upd()}};
+let tx=null;book.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+book.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(d<-40)$('#next').click();if(d>40)$('#prev').click();tx=null});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')$('#next').click();if(e.key==='ArrowLeft')$('#prev').click()});
+
+let AC=null,gm=null,on=true,aud=null,step=0;
+const chords=[[261.6,329.6,392],[220,261.6,329.6],[174.6,220,261.6],[196,246.9,293.7]];
+function note(f,t,d,v){const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(gm);o.start(t);o.stop(t+d+.05)}
+function loop(){if(!AC||!on||CFG.musica)return;const c=chords[Math.floor(step/8)%4],t=AC.currentTime+.05;note(c[[0,1,2,1,2,1,0,1][step%8]]*2,t,2.2,.07);if(step%8===0)c.forEach(f=>note(f/2,t,6,.05));step++}
+function swish(){if(!AC||!on)return;const n=Math.floor(AC.sampleRate*.4),b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const s=AC.createBufferSource();s.buffer=b;const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(800,AC.currentTime);f.frequency.exponentialRampToValueAtTime(3000,AC.currentTime+.35);const g=AC.createGain();g.gain.value=.18;s.connect(f);f.connect(g);g.connect(AC.destination);s.start()}
+function audioStart(){try{AC=new(window.AudioContext||window.webkitAudioContext)();AC.resume();gm=AC.createGain();gm.gain.value=.5;gm.connect(AC.destination);setInterval(loop,900)}catch(e){}
+  if(CFG.musica){try{aud=new Audio(CFG.musica);aud.loop=true;aud.volume=.5;aud.play()}catch(e){}}
+  $('#snd').classList.add('show')}
+$('#snd').onclick=()=>{on=!on;$('#snd').textContent=on?'🔊':'🔇';if(aud)on?aud.play():aud.pause()};
+// efeitos: pétalas caindo, estrelas cadentes
+(function(){const f=$('#fx');['🌻','✨','🌻','✨','🌼','✨','🌻','✨'].forEach(e=>{const d=document.createElement('span');d.className='fall';d.textContent=e;d.style.cssText=`left:${Math.random()*96}%;font-size:${14+Math.random()*10}px;animation-duration:${16+Math.random()*14}s;animation-delay:-${Math.random()*25}s`;f.appendChild(d)});
+setInterval(()=>{const s=document.createElement('i');s.className='shoot';s.style.cssText=`left:${Math.random()*60}%;top:${Math.random()*35}%`;f.appendChild(s);setTimeout(()=>s.remove(),1400)},7000)})();
+$('#abrir').onclick=()=>{$('#intro').classList.add('hide');$('#bookwrap').classList.add('show');audioStart();setTimeout(build,50)};
+</script>
+</body>
+</html>
